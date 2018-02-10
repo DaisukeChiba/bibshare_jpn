@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>BibShare</title>
+	    <!-- AWS SDK //-->
+	    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
+	    <!-- Amazon Cognito //-->
+	    <script src="js/jsbn.js"></script>
+	    <script src="js/jsbn2.js"></script>
+	    <script src="js/sjcl.js"></script>
+	    <script src="js/aws-cognito-sdk.min.js"></script>
+	    <script src="js/amazon-cognito-identity.min.js"></script>
+	    <!-- jquery //-->
+	    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!-- Bootstrap core CSS -->
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <!-- Google Web Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+	    <script src="js/cognito.js"></script>
+
+        <style type="text/css">
+            body {
+                /* 背景画像の定義 */
+                /* 画面いっぱいに背景画像を設定する方法 */
+                /* https://qiita.com/yukisaibai/items/c63a945b2fdf17cfec94 */
+                background-image: url("./image/main2.jpg");
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: auto;
+                background-color: #464646;
+            }
+
+            /* Google Web Fonts */
+            h1 {
+                font-family: 'Slabo 27px', serif;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <h1 class="text-center text-dark m-4">BibShare</h1>
+
+            <!-- ログインフォーム -->
+            <div class="row m-4 justify-content-center">
+                <div class="card bg-light" style="width: 20rem;">
+                    <div class="card-body">
+            			<div id="message" class="alert" style="display:none;"></div>
+                        <form>
+                            <div class="form-group">
+                                <label>User name</label>
+                                <input type="text" id="inputUsername" class="form-control" placeholder="User name" required autofocus />
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+                            </div>
+                            <button type="button" class="btn btn-primary btn-block" id="sign_in_btn">Sign in</button>
+                        </form>
+                    </div>
+                    <div class="card-footer">
+                        <div class="mb-2">Don't have an account?</div>
+                        <button type="button" class="btn btn-success btn-block"  id="sign_up_link">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
