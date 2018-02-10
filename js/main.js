@@ -59,10 +59,10 @@ serchResultList = function(event){
 function init() {
 
 	// $.ajaxメソッドで通信
-	$.ajax({	
+	$.ajax({
 		url:'http://ec2-52-198-38-64.ap-northeast-1.compute.amazonaws.com:1880/select_db', // 通信先のURL
 		type:'POST',		// 使用するHTTPメソッド (GET/ POST)
-		dataType:'json',	 // 応答のデータの種類 
+		dataType:'json',	 // 応答のデータの種類
 		timeout:100000, 		// 通信のタイムアウトの設定(ミリ秒)　←落ちる原因かもなので、増やしてみました！！
 		cache:false, 		// キャッシュオフ
 
@@ -92,15 +92,36 @@ function createBookshelf(data){
 		// 画面表示領域のクリア
 	   	$('#resultAreaMain').empty();
 
-		var tagArray ="";
-		for(var i = 0; i < data.length;  i++  ) {
-			divItems=""
+		var tagArray = "";
+		for(var i = 0; i < data.length; i++){
+			divItems="";
+			// ▼card開始
+			divItems += '<div class=\"card img-thumbnail m-2\">';
+			// 書籍画像表示
+			divItems += '    <a href=\"#\" onclick=\"dispBookInformation(' + i + ')\">';
+			divItems += '        <img class=\"rounded card-img-top\" src=\"' + data[i]["thumbnailurl"] + '\"/>';
+			divItems += '    </a>';
+			// ▼card-block開始
+			divItems += '    <div class=\"card-block\">'
+			// ユーザ名表示
+			divItems += '        <a class=\"card-link\"  href=\"#\" onclick=\"userSearch(' + i + ')\">@' + data[i]["postuser"]  + '</a>';
+			// ハッシュタグ表示
+			tagArray = data[i]["hashtag"].split('#');
+			for(var j = 0; j < tagArray.length; j++){
+				// ハッシュタグをsplitして空文字が残る問題は判定で逃げました…
+				if (tagArray[j]){
+					divItems += '        <br /><small><a class=\"card-link\" href=\"#\" onclick=\"tagSearch(' + i + ')\">#' + tagArray[j]  + '</a></small>';
+				}
+			}
+			divItems += '    </div>'
+			// ▲card-block終了
+
 //これだとPC側の見栄えが悪い
 //			divItems +='<div class=\"col-3 grid-img \">';
 //			divItems +='<a href=\"#\" onclick=\"dispBookInformation(' + i + ')\"><img class=\"rounded col-12\" src=\"' + data[i]["thumbnailurl"] + '\"/></a>';
 //これだとスマホ側の画像が小さすぎる
-			divItems +='<div class=\"col-2 grid-img \">';
-			divItems +='<a href=\"#\" onclick=\"dispBookInformation(' + i + ')\"><img class=\"rounded\" src=\"' + data[i]["thumbnailurl"] + '\"/></a>';
+//			divItems +='<div class=\"col-2 grid-img \">';
+//			divItems +='<a href=\"#\" onclick=\"dispBookInformation(' + i + ')\"><img class=\"rounded\" src=\"' + data[i]["thumbnailurl"] + '\"/></a>';
 //レイアウト崩れにつき、投稿者やタグの表示をコメントアウト
 //			divItems +='<a class=\"user\"  href=\"#\" onclick=\"userSearch(' + i + ')\">' + data[i]["postuser"]  + '</a>';
 ////		tagArray = data[i]["hashtag"];
@@ -109,7 +130,8 @@ function createBookshelf(data){
 //			for(var j =0; j < tagArray.length; j++){
 //				divItems +='<a class=\"tag\" href=\"#\" onclick=\"tagSearch(' + i + ')\">' + tagArray[j]  + '</a>';
 //			}
-			divItems +='</div>';
+			divItems += '</div>';
+			// ▲card終了
 			$('#resultAreaMain').append(divItems);
 		}
 }
@@ -123,7 +145,7 @@ function dispBookInformation(i){
 	//セッションストレージに値を設定
 	sessionStorage.removeItem("selectNo");
 	sessionStorage.setItem("selectNo", i);
-	
+
 	//ページ遷移
 	var url = "book.html";
 	$(location).attr("href", url);
