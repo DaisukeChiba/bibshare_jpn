@@ -13,6 +13,8 @@ var cognitoUser;
 /* ****************************************************************************** */
 $(function(){
 	$("#sign_up_btn").click(function() {
+	    $("#message").empty();
+	    $("#message").hide();
 	    username = $("#inputUsername").val();
 	    email = $("#inputEmail").val();
 	    password = $("#inputPassword").val();
@@ -63,6 +65,8 @@ $(function(){
 /* ****************************************************************************** */
 $(function(){
 	$("#activate_btn").click(function() {
+	    $("#message").empty();
+	    $("#message").hide();
 	    username = $("#inputUsername").val();
 	    actcode = $("#actcode").val();
 	    if(!username) {
@@ -95,7 +99,7 @@ $(function(){
 	             '次の画面でサインインを行ってください');
 	             var url = "signin.html";
 	             $(location).attr("href", url);
-	             $(".wrapper").addClass("form-success"); 
+//	             $(".wrapper").addClass("form-success"); 
 	        }
 	    });
 	});
@@ -106,6 +110,8 @@ $(function(){
 /* ****************************************************************************** */
 $(function(){
 	$("#sign_in_btn").click(function() {
+	    $("#message").empty();
+	    $("#message").hide();
 	    username = $("#inputUsername").val();
 	    password = $("#inputPassword").val();
 	    if(!username) {
@@ -135,12 +141,10 @@ $(function(){
 	    cognitoUser.authenticateUser(authenticationDetails, {
 	        onSuccess: function (result) {
 
-				//セッションストレージに値を設定
-				sessionStorage.setItem("cogUsername", cognitoUser.username);
 				//本棚画面へ遷移
 	            var url = "main.html";
 	                $(location).attr("href", url);
-	            $(".wrapper").addClass("form-success"); 
+//	            $(".wrapper").addClass("form-success"); 
 	        },
 	        onFailure: function(err) {
 	            console.log(err);
@@ -178,20 +182,21 @@ function checklogin () {
                 cognitoUser.getUserAttributes(function(err, attrresult) {
                     if (err) {
                         alert(err);
-                        return;
+                        return 1;
                     }
+					//セッションストレージにユーザ名を設定
+					sessionStorage.setItem("cogUsername", cognitoUser.username);
+					return 0;
                 });
             } else {
 		        console.log("cognitoUser.getSession - Error.");
-				var url = "signin.html";
-				$(location).attr("href", url);
+				return 1;
             }
         });
     //サインイン済みでない場合
     } else {
         console.log("cognitoUser.getSession - Null.");
-		var url = "signin.html";
-		$(location).attr("href", url);
+		return 1;
     }
 }
 
@@ -208,7 +213,7 @@ $(function(){
 		console.log("cognitoUser is null.");
 		var url = "signin.html";
 		$(location).attr("href", url);
-		$(".wrapper").addClass("form-success"); 
+//		$(".wrapper").addClass("form-success"); 
 
 	});
 });
@@ -222,3 +227,17 @@ $(function(){
 //        cognitoUser.signOut();
 //    }
 //});
+
+
+/* ***************************************************************************** */
+/*                    入力欄のエンターキー無効化(2/13追加)                     * */
+/* ***************************************************************************** */
+$(function(){
+    $("input"). keydown(function(e) {
+        if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+            return false;
+        } else {
+            return true;
+        }
+    });
+});

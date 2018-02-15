@@ -6,10 +6,18 @@
 /*                                      初期処理                                * */
 /* ****************************************************************************** */
 $(function(){
-	//初期レイアウト表示
-	init();
-	//サインインチェック。todo:サインインチェックは優先して実行したいが、画面遷移がうまくいかないためいったんこのままとする。
-	checklogin();
+	//サインインチェック
+	var result = checklogin();
+
+	//未サインインの場合
+	if (result == 1) {
+		var url = "signin.html";
+		$(location).attr("href", url);
+	//サインイン済の場合
+	} else {
+		//初期レイアウト表示
+		init();
+	}
 });
 
 /* ***************************************************************************** */
@@ -101,7 +109,7 @@ $(function(){
 			var sourceImg = new Image();
 			sourceImg.src = reader.result;
 			sourceImg.onload = function() {
-				var img = $('dummy');
+				var img = $('#dummy');
 				//サイズ編集
 				img.src = editImage(sourceImg);
 		        // Base64形式データから先頭のファイル情報を削除(空文字に置換)
@@ -202,7 +210,7 @@ function sendVisionAPI(base64string){
             console.log('--- Cloud Vision API ---');
             console.log(req.responseText);
             var res = JSON.parse(req.responseText);
-            alert(res.responses[0].textAnnotations[0].description);
+//            alert(res.responses[0].textAnnotations[0].description);
 //			if(!confirm('この本を検索しますか？')){
 //		        /* キャンセルの時の処理 */
 //		        return false;
@@ -331,17 +339,17 @@ function sendBooksAPI(serchparam, mode){
 
 		//検索入力エリアの上部の空行を非表示
 		$('#dummymargin').unwrap();
-		//画面最上部へスクロール todo:うまく動いてない
-		$(window).scrollTop();
+		//画面最上部へスクロール todo:うまく動いてない⇒2/11対応
+		$(window).scrollTop(0);
 
    		//投稿にて利用するので、jsonをセッションストレージに退避
 		sessionStorage.removeItem("gbJsonData");
 		sessionStorage.setItem("gbJsonData", JSON.stringify(data));
 
 	// 通信に失敗した時に実行
-	// たまに失敗するときは、statusが0になっていました。(原因未調査)
 	}).fail(function(jqXHR, textStatus, errorThrown ) {
-		$(resultAreaPost).html("errorThrown : " + errorThrown.message);
+//		$(resultAreaPost).html("errorThrown : " + errorThrown.message);
+		alert('error!!');
 		console.log(jqXHR.status);
 
 	});
@@ -361,13 +369,13 @@ function postBookInformation(i){
 
      var url = "book.html";
      $(location).attr("href", url);
-     $(".wrapper").addClass("form-success"); 
+//     $(".wrapper").addClass("form-success"); 
 }
 
 /* ************************************************************************************ */
 /*   book.htmlで利用するためにjsonデータを生成し、セッションストレージに値を設定      * */
 /* ************************************************************************************ */
-//main.htmlのjsonとpost.htmlのjsonを同じ形にする。todo：データによって落ちる。json確認。
+//main.htmlのjsonとpost.htmlのjsonを同じ形にする。
 function setJson(){
 	var data = JSON.parse(sessionStorage.getItem("gbJsonData"));
 	var i = sessionStorage.getItem("selectNo");
@@ -442,8 +450,10 @@ function setJson(){
 	];
 	
 	console.log(data);
-	sessionStorage.removeItem("serchJsonData");
-	sessionStorage.setItem("serchJsonData", JSON.stringify(data));
+	sessionStorage.removeItem("searchJsonData");
+	sessionStorage.setItem("searchJsonData", JSON.stringify(data));
+	//配列番号を0に上書き　2/10障害対応
+	sessionStorage.setItem("selectNo", "0");
 
 }
 
