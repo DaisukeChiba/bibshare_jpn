@@ -32,6 +32,16 @@ $(function(){
 
 
 /* ***************************************************************************** */
+/*                  検索結果のクリア                                           * */
+/* ***************************************************************************** */
+/* Clearボタン押下で検索結果をクリア(画面をリロード) */
+$(function(){
+    $("#clearSearchForm").on("click", function(){
+        location.reload();
+    });
+});
+
+/* ***************************************************************************** */
 /*                                  json内の検索                             * */
 /* ***************************************************************************** */
 // 初期表示時にDBの全量をjsonで取得しているため、json内を検索した。
@@ -40,7 +50,7 @@ serchResultList = function(event){
 	var searchJsonData = JSON.parse(sessionStorage.getItem("masterJsonData"));
 	var keyword = $(this).val();
 	if(keyword == "#") return;
-	
+
 	if (keyword.substring(0,1) == "@") {
 		keyword = keyword.replace("@","")
 		var newResult = $.grep(searchJsonData, function (e) {
@@ -232,4 +242,3 @@ function dispBookInformation(i){
 	var url = "book.html";
 	$(location).attr("href", url);
 }
-
