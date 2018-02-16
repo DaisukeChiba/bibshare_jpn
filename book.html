@@ -78,8 +78,8 @@
 
                 <!-- Bootstrapのグリッドシステムについてまとめてみた -->
                 <!-- https://qiita.com/akatsuki174/items/53b7367b04ed0b066bbf -->
-                <!-- 入力フォームグリッド -->
-                <div class="col-9">
+                <!-- 入力フォーム -->
+                <div class="col-9" id="editArea">
                     <form>
                         <div class="form-group row">
                             <label for="title" class="col-sm-3 col-form-label text-info">Title</label>
@@ -114,12 +114,45 @@
                     </form>
                     <div class="row justify-content-end">
                         <div class="col-sm-9">
-                            <button type="button" class="btn btn-primary btn-block" id="postBookData">Post / Update</button>
+                            <button type="button" class="btn btn-primary btn-block" id="insertBookData">Post</button>
+                            <button type="button" class="btn btn-primary btn-block" id="updateBookData">Update</button>
+                            <button type="button" class="btn btn-primary btn-block" id="deleteBookData">Delete</button>
                             <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';">Cancel</button>
                         </div>
                     </div>
-            		<div id="message" class="alert" style="display:none;"></div>
+            		<!-- <div id="message" class="alert" style="display:none;"></div> -->
                 </div>
+                <!-- 入力フォーム -->
+                <!-- 参照 -->
+                <div class="col-9" id="detailArea">
+                    <div class="row">
+                        <label for="title" class="col-sm-3 col-form-label text-info">Title</label>
+                        <div class="col-sm-9" id="dispTitle"></div>
+                    </div>
+                    <div class="row">
+                        <label for="author" class="col-sm-3 col-form-label text-info">Author</label>
+                        <div class="col-sm-9" id="dispAuthors"></div>
+                    </div>
+                    <div class="row">
+                        <label for="publisher" class="col-sm-3 col-form-label text-info">Publisher</label>
+                        <div class="col-sm-9" id="dispPublisher"></div>
+                    </div>
+                    <div class="row">
+                        <label for="tag" class="col-sm-3 col-form-label text-info">Tag</label>
+                        <div class="col-sm-9" id="dispTag"></div>
+                    </div>
+                    <div class="row">
+                        <label for="comment" class="col-sm-3 col-form-label text-info">Comment</label>
+                        <div class="col-sm-9" id="dispComment"></div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-9">
+                            <button type="button" class="btn btn-primary btn-block" id="editBookData">Edit</button>
+                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';">Return</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 参照 -->
             </div>
         </div>
     </body>
