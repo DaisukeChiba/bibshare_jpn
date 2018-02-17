@@ -152,12 +152,12 @@ function editImage(sourceImg){
 		newHeight = height;
 		newWidth = width;
 	}
-	
+
 	canvas.width = newWidth;
 	canvas.height = newHeight;
 	context.drawImage(sourceImg, 0, 0, newWidth, newHeight);
 	imageUrl = canvas.toDataURL("image/jpeg", 0.9);
-	
+
 	var originalBlob = base64ToBlob(imageUrl);
 //	alert("size" + originalBlob["size"]);
 
@@ -245,10 +245,10 @@ function sendBooksAPI(serchparam, mode){
    	}
 
 	// $.ajaxメソッドで通信
-	$.ajax({	
+	$.ajax({
 		url:url + serchparam, // 通信先のURL
 		type:'GET',		// 使用するHTTPメソッド (GET/ POST)
-		dataType:'json',	 // 応答のデータの種類 
+		dataType:'json',	 // 応答のデータの種類
 		timeout:100000, 		// 通信のタイムアウトの設定(ミリ秒)　←落ちる原因かもなので、増やしてみました！！
 
 	// 通信に成功した時に実行
@@ -262,7 +262,7 @@ function sendBooksAPI(serchparam, mode){
 
 		var value="";
 		var ulItems="";
-		
+
 		for(var i = 0; i < data.items.length;  i++  ) {
 			value="";
 			ulItems=""
@@ -280,12 +280,12 @@ function sendBooksAPI(serchparam, mode){
 				value ='image/book_01.jpg'
 			}
 			ulItems +='<img class=\"rounded grid-img\" src=\"' + value + '\">';
-			ulItems +='<button type=\"button\" class=\"btn btn-primary btn-block mt-3\" onclick=\"postBookInformation(' + i + ')\">Select</button>';
+			ulItems +='<button type=\"button\" class=\"btn btn-primary btn-block mt-3\" onclick=\"postBookInformation(' + i + ')\"><i class=\"fa fa-check\"></i> Select</button>';
 			ulItems +='</div>';
 			ulItems +='<div class=\"col-9 mt-2\">';
 			ulItems +='<form>';
-			
-			
+
+
 			//タイトル
 			if('title' in data.items[i].volumeInfo){
 				value =data.items[i].volumeInfo.title;
@@ -330,7 +330,7 @@ function sendBooksAPI(serchparam, mode){
 			ulItems +='</div>';
 			ulItems +='</li>';
 
-				
+
 			$('#resultAreaPost').append(ulItems);
 		}
 
@@ -369,7 +369,7 @@ function postBookInformation(i){
 
      var url = "book.html";
      $(location).attr("href", url);
-//     $(".wrapper").addClass("form-success"); 
+//     $(".wrapper").addClass("form-success");
 }
 
 /* ************************************************************************************ */
@@ -436,19 +436,19 @@ function setJson(){
 
 	var data=[
 		{
-		    "author": author, 
-		    "booktitle": booktitle, 
-		    "comment": comment, 
-		    "id": id, 
-		    "hashtag": hashtag, 
-		    "isbncode": isbncode, 
-		    "postdate": postdate, 
-		    "postuser": postuser, 
-		    "publisher": publisher, 
+		    "author": author,
+		    "booktitle": booktitle,
+		    "comment": comment,
+		    "id": id,
+		    "hashtag": hashtag,
+		    "isbncode": isbncode,
+		    "postdate": postdate,
+		    "postuser": postuser,
+		    "publisher": publisher,
 		    "thumbnailurl":thumbnail
 		}
 	];
-	
+
 	console.log(data);
 	sessionStorage.removeItem("searchJsonData");
 	sessionStorage.setItem("searchJsonData", JSON.stringify(data));
@@ -465,3 +465,28 @@ function init(){
 	$('#resultArea').hide();
 
 }
+
+/* ***************************************************************************** */
+/*                                  追従ボタン                                 * */
+/* ***************************************************************************** */
+// スクロールしたら追従するトップへ戻るボタンを表示
+// http://www.webopixel.net/javascript/538.html
+$(function() {
+    var topBtn = $('#page-top');
+    topBtn.hide();
+    //スクロールが100に達したらボタン表示
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            topBtn.fadeIn();
+        } else {
+            topBtn.fadeOut();
+        }
+    });
+    //スクロールしてトップ
+    topBtn.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});

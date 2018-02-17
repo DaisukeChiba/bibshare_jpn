@@ -6,28 +6,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>BibShare</title>
-	    <!-- AWS SDK //-->
-	    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
-	    <!-- Amazon Cognito //-->
-	    <script src="js/jsbn.js"></script>
-	    <script src="js/jsbn2.js"></script>
-	    <script src="js/sjcl.js"></script>
-	    <script src="js/aws-cognito-sdk.min.js"></script>
-	    <script src="js/amazon-cognito-identity.min.js"></script>
-	    <!-- jquery //-->
-	    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!-- AWS SDK -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
+        <!-- Amazon Cognito -->
+        <script src="js/jsbn.js"></script>
+        <script src="js/jsbn2.js"></script>
+        <script src="js/sjcl.js"></script>
+        <script src="js/aws-cognito-sdk.min.js"></script>
+        <script src="js/amazon-cognito-identity.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <!-- Google Web Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <script src="./js/bootstrap.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
     	<script src="./js/ie10-viewport-bug-workaround.js"></script>
+        <!-- Google Web Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <!-- Font Awesome CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-	    <!-- BibshareJS -->
-	    <script src="./js/cognito.js"></script>
-	    <script src="./js/main.js"></script>
+        <!-- BibshareJS -->
+        <script src="./js/cognito.js"></script>
+        <script src="./js/main.js"></script>
 
         <style type="text/css">
             /* Google Web Fonts */
@@ -35,40 +37,64 @@
                 font-family: 'Slabo 27px', serif;
             }
 
+            /* 追従ボタン */
+            #page-top {
+                position: fixed;
+                bottom: 0px;
+                right: 10px;
+                font-size: 150%;
+            }
+            #page-top a {
+                background: #666;
+                text-decoration: none;
+                color: #fff;
+                width: 40px;
+                padding: 0px 10px 5px 10px;
+                text-align: center;
+                display: block;
+                border-radius: 40px;
+            }
+            #page-top a:hover {
+                text-decoration: none;
+                background: #999;
+            }
         </style>
     </head>
 
-    <body class="bg-light">
+    <body class="bg-light" id="top">
 
         <!-- ナビゲーションヘッダ -->
         <nav class="navbar fixed-top navbar-dark bg-dark">
             <a class="navbar-brand mt-2" href="main.html"><h3>BibShare</h3></a>
             <span class="navbar-text">
-                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn">Sign out</button>
-                <a href="post.html"><button class="btn btn-primary" type="button">Post</button></a>
+                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn"><i class="fa fa-sign-out"></i> Sign out</button>
+                <a href="post.html"><button class="btn btn-primary" type="button"><i class="fa fa-book"></i> Post</button></a>
             </span>
         </nav>
 
-	    <div class="container">
-	        <!-- bootstrap4のグリッドシステムを理解する -->
-	        <!-- https://qiita.com/Nerosui777/items/5669583f2d8f40b4a800 -->
+        <div class="container">
+            <!-- bootstrap4のグリッドシステムを理解する -->
+            <!-- https://qiita.com/Nerosui777/items/5669583f2d8f40b4a800 -->
 
-	        <!-- 検索フォーム -->
-	        <div class="row justify-content-center" style="margin-top: 100px;">
-	            <div class="col-sm-8">
-	                <div class="input-group mb-3">
-	                    <input type="text" class="form-control" placeholder="Title, Author, Publisher, Tag, Comment" id="keywordSearchForm">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-primary" id="clearSearchForm">Clear</button>
+            <!-- 検索フォーム -->
+            <div class="row justify-content-center" style="margin-top: 100px;">
+                <div class="col-sm-8">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Title, Author, Publisher, Tag, Comment" id="keywordSearchForm">
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-outline-primary" id="clearSearchForm"><i class="fa fa-th"></i> Show all</button>
                         </span>
-	                </div>
-	            </div>
-	        </div>
+                    </div>
+                </div>
+            </div>
 
-	        <!-- 本棚グリッド -->
-	        <div class="row justify-content-center" style="margin-top: 10px;" id="resultAreaMain"/>
+            <!-- 本棚グリッド -->
+            <div class="row justify-content-center" style="margin-top: 10px;" id="resultAreaMain"/>
 
-	    </div>
+        </div>
+
+        <!-- 追従ボタン -->
+        <p id="page-top"><a href="#top"><i class="fa fa-angle-double-up"></i></a></p>
 
     </body>
 </html>

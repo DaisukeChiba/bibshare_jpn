@@ -242,3 +242,28 @@ function dispBookInformation(i){
 	var url = "book.html";
 	$(location).attr("href", url);
 }
+
+/* ***************************************************************************** */
+/*                                  追従ボタン                                 * */
+/* ***************************************************************************** */
+// スクロールしたら追従するトップへ戻るボタンを表示
+// http://www.webopixel.net/javascript/538.html
+$(function() {
+    var topBtn = $('#page-top');
+    topBtn.hide();
+    //スクロールが100に達したらボタン表示
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            topBtn.fadeIn();
+        } else {
+            topBtn.fadeOut();
+        }
+    });
+    //スクロールしてトップ
+    topBtn.click(function () {
+        $('body,html').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
+});

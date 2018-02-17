@@ -6,62 +6,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>BibShare</title>
-	    <!-- AWS SDK //-->
-	    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
-	    <!-- Amazon Cognito //-->
-	    <script src="js/jsbn.js"></script>
-	    <script src="js/jsbn2.js"></script>
-	    <script src="js/sjcl.js"></script>
-	    <script src="js/aws-cognito-sdk.min.js"></script>
-	    <script src="js/amazon-cognito-identity.min.js"></script>
-	    <!-- jquery //-->
-	    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!-- AWS SDK -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
+        <!-- Amazon Cognito -->
+        <script src="js/jsbn.js"></script>
+        <script src="js/jsbn2.js"></script>
+        <script src="js/sjcl.js"></script>
+        <script src="js/aws-cognito-sdk.min.js"></script>
+        <script src="js/amazon-cognito-identity.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <!-- Google Web Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <script src="./js/bootstrap.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
     	<script src="./js/ie10-viewport-bug-workaround.js"></script>
+        <!-- Google Web Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <!-- Font Awesome CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-	    <!-- BibshareJS -->
-	    <script src="./js/cognito.js"></script>
-	    <script src="./js/book.js"></script>
+        <!-- BibShareJS -->
+        <script src="./js/cognito.js"></script>
+        <script src="./js/book.js"></script>
 
         <style type="text/css">
             /* Google Web Fonts */
             h3 {
                 font-family: 'Slabo 27px', serif;
             }
-
-            /* グリッドレイアウトで高さも横幅もバラバラの画像を綺麗に並べる方法 */
-            /* https://ottan.xyz/grid-bootstrap-css-5260/ */
-            img {
-                max-width: 80%;
-            }
-            .grid-img {
-                position: relative;
-                overflow: hidden;
-            }
-            .grid-img img {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                margin: auto;
-            }
         </style>
     </head>
 
     <body class="bg-light">
+
         <!-- ナビゲーションヘッダ -->
         <nav class="navbar fixed-top navbar-dark bg-dark">
             <a class="navbar-brand mt-2" href="main.html"><h3>BibShare</h3></a>
             <span class="navbar-text">
-                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn">Sign out</button>
-                <a href="post.html"><button class="btn btn-primary" type="button">Post</button></a>
+                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn"><i class="fa fa-sign-out"></i> Sign out</button>
+                <a href="post.html"><button class="btn btn-primary" type="button"><i class="fa fa-book"></i> Post</button></a>
             </span>
         </nav>
 
@@ -71,9 +56,9 @@
                 <!-- 画像グリッド -->
                 <div class="col-sm-3 text-center">
                     <img class="rounded grid-img" src="" id="sUrl"/>
-                    <div class="mt-4">
+                    <!--<div class="mt-4">
                         <a href="#" id="postSlack"><img src="./image/add_to_slack.png" width="100px"></a>
-                    </div>
+                    </div>-->
                 </div>
 
                 <!-- Bootstrapのグリッドシステムについてまとめてみた -->
@@ -114,14 +99,16 @@
                     </form>
                     <div class="row justify-content-end">
                         <div class="col-sm-9">
-                            <button type="button" class="btn btn-primary btn-block" id="insertBookData">Post</button>
-                            <button type="button" class="btn btn-primary btn-block" id="updateBookData">Update</button>
-                            <button type="button" class="btn btn-primary btn-block" id="deleteBookData">Delete</button>
-                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';">Cancel</button>
+                            <button type="button" class="btn btn-primary btn-block" id="insertBookData"><i class="fa fa-send-o"></i> Post</button>
+                            <button type="button" class="btn btn-primary btn-block" id="updateBookData"><i class="fa fa-send-o"></i> Update</button>
+                            <button type="button" class="btn btn-danger btn-block" id="deleteBookData"><i class="fa fa-close"></i> Delete</button>
+                            <button type="button" class="btn btn-success btn-block" id="postSlack1"><i class="fa fa-slack"></i> Add to Slack</a>
+                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> Cancel</button>
                         </div>
                     </div>
             		<!-- <div id="message" class="alert" style="display:none;"></div> -->
                 </div>
+
                 <!-- 入力フォーム -->
                 <!-- 参照 -->
                 <div class="col-9" id="detailArea">
@@ -147,8 +134,9 @@
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-9">
-                            <button type="button" class="btn btn-primary btn-block" id="editBookData">Edit</button>
-                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';">Return</button>
+                            <button type="button" class="btn btn-primary btn-block" id="editBookData"><i class="fa fa-edit"></i> Edit</button>
+                            <button type="button" class="btn btn-success btn-block" id="postSlack2"><i class="fa fa-slack"></i> Add to Slack</a>
+                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> Back</button>
                         </div>
                     </div>
                 </div>

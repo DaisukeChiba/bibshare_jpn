@@ -6,28 +6,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>BibShare</title>
-	    <!-- AWS SDK //-->
-	    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
-	    <!-- Amazon Cognito //-->
-	    <script src="js/jsbn.js"></script>
-	    <script src="js/jsbn2.js"></script>
-	    <script src="js/sjcl.js"></script>
-	    <script src="js/aws-cognito-sdk.min.js"></script>
-	    <script src="js/amazon-cognito-identity.min.js"></script>
-	    <!-- jquery //-->
-	    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!-- AWS SDK -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
+        <!-- Amazon Cognito -->
+        <script src="js/jsbn.js"></script>
+        <script src="js/jsbn2.js"></script>
+        <script src="js/sjcl.js"></script>
+        <script src="js/aws-cognito-sdk.min.js"></script>
+        <script src="js/amazon-cognito-identity.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <!-- Google Web Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
-	    <script src="js/cognito.js"></script>
+        <!-- Font Awesome CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <!-- BibshareJS -->
+        <script src="js/cognito.js"></script>
 
         <style type="text/css">
+            /* 画面全体に背景画像を設定 */
+            /* https://qiita.com/yukisaibai/items/c63a945b2fdf17cfec94 */
             body {
-                /* 背景画像の定義 */
-                /* 画面いっぱいに背景画像を設定する方法 */
-                /* https://qiita.com/yukisaibai/items/c63a945b2fdf17cfec94 */
                 background-image: url("./image/main2.jpg");
                 background-position: center center;
                 background-repeat: no-repeat;
@@ -35,13 +38,11 @@
                 background-size: auto;
                 background-color: #464646;
             }
-
             /* Google Web Fonts */
             h1 {
                 font-family: 'Slabo 27px', serif;
             }
         </style>
-
     </head>
 
     <body>
@@ -62,7 +63,7 @@
                                 <label>Password</label>
                                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required />
                             </div>
-                            <button type="button" class="btn btn-primary btn-block" id="sign_in_btn">Sign in</button>
+                            <button type="button" class="btn btn-primary btn-block" id="sign_in_btn"><i class="fa fa-sign-in"></i> Sign in</button>
                         </form>
                     </div>
                     <div class="card-footer">

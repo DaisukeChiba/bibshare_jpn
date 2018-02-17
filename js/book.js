@@ -44,19 +44,19 @@ $(function(){
 	   	}
 
 		// $.ajaxメソッドで通信
-		$.ajax({	
+		$.ajax({
 			url:url, // 通信先のURL
 			type:'POST',		// 使用するHTTPメソッド (GET/ POST)
 			dataType:'json',	 // 応答のデータの種類
 			data:{
-			    "id":id, 
-			    "user":puser, 
-			    "booktitle": $("#title").val(), 
-			    "thumbnailurl": $("#sUrl").attr('src'), 
-			    "author": $("#authors").val(), 
-			    "publisher": $("#publisher").val(), 
-			    "isbncode": data[i]["isbncode"], 
-			    "hashtag": $("#tag").val(), 
+			    "id":id,
+			    "user":puser,
+			    "booktitle": $("#title").val(),
+			    "thumbnailurl": $("#sUrl").attr('src'),
+			    "author": $("#authors").val(),
+			    "publisher": $("#publisher").val(),
+			    "isbncode": data[i]["isbncode"],
+			    "hashtag": $("#tag").val(),
 			    "comment": $("#comment").val()
 			},
 			timeout:100000, 		// 通信のタイムアウトの設定(ミリ秒)　←落ちる原因かもなので、増やしてみました！！
@@ -96,7 +96,7 @@ $(function(){
 		id =data[i]["id"];
 
 		// $.ajaxメソッドで通信
-		$.ajax({	
+		$.ajax({
 			url:'http://ec2-52-198-38-64.ap-northeast-1.compute.amazonaws.com:1880/delete_db', // 通信先のURL
 			type:'POST',		// 使用するHTTPメソッド (GET/ POST)
 			dataType:'json',	 // 応答のデータの種類
@@ -122,16 +122,27 @@ $(function(){
 /*                            本をSlackに投稿する                               * */
 /* ****************************************************************************** */
 $(function(){
-	$('#postSlack').click(function(){
+	$('#postSlack1').click(function(){
+		postSlack();
+	});
+});
+
+$(function(){
+	$('#postSlack2').click(function(){
+		postSlack();
+	});
+});
+
+function postSlack(){
 		var puser = sessionStorage.getItem("cogUsername");
 		// $.ajaxメソッドで通信
-		$.ajax({	
+		$.ajax({
 			url:'http://ec2-52-198-38-64.ap-northeast-1.compute.amazonaws.com:1880/slack_in', // 通信先のURL
 			type:'POST',		// 使用するHTTPメソッド (GET/ POST)
 			dataType:'json',	 // 応答のデータの種類
 			data:{
-			    "user":puser, 
-			    "booktitle": $("#title").val(), 
+			    "user":puser,
+			    "booktitle": $("#title").val(),
 			    "thumbnailurl": $("#sUrl").attr('src')
 			},
 			timeout:100000, 		// 通信のタイムアウトの設定(ミリ秒)　←落ちる原因かもなので、増やしてみました！！
@@ -152,8 +163,8 @@ $(function(){
 //	        $("#message").empty();
 //		   	$('#resultArieaBook').append("errorThrown : " + errorThrown.message);
 		});
-	});
-});
+
+};
 
 
 /* ****************************************************************************** */

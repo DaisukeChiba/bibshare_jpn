@@ -6,30 +6,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>BibShare</title>
-
-	    <!-- AWS SDK //-->
-	    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
-	    <!-- Amazon Cognito //-->
-	    <script src="js/jsbn.js"></script>
-	    <script src="js/jsbn2.js"></script>
-	    <script src="js/sjcl.js"></script>
-	    <script src="js/aws-cognito-sdk.min.js"></script>
-	    <script src="js/amazon-cognito-identity.min.js"></script>
-	    <!-- jquery //-->
-	    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <!-- AWS SDK -->
+        <script src="https://sdk.amazonaws.com/js/aws-sdk-2.23.0.min.js"></script>
+        <!-- Amazon Cognito -->
+        <script src="js/jsbn.js"></script>
+        <script src="js/jsbn2.js"></script>
+        <script src="js/sjcl.js"></script>
+        <script src="js/aws-cognito-sdk.min.js"></script>
+        <script src="js/amazon-cognito-identity.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" href="./css/bootstrap.min.css">
-        <!-- Google Web Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
         <script src="./js/bootstrap.min.js"></script>
         <script src="./js/bootstrap.bundle.min.js"></script>
     	<script src="./js/ie10-viewport-bug-workaround.js"></script>
+        <!-- Google Web Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <!-- Font Awesome CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-	    <!-- BibshareJS -->
-	    <script src="./js/quagga.min.js"></script>
-	    <script src="./js/cognito.js"></script>
-	    <script src="./js/post.js"></script>
+        <!-- BibShareJS -->
+        <script src="./js/quagga.min.js"></script>
+        <script src="./js/cognito.js"></script>
+        <script src="./js/post.js"></script>
 
         <style type="text/css">
             /* Google Web Fonts */
@@ -37,56 +38,61 @@
                 font-family: 'Slabo 27px', serif;
             }
 
-            /* グリッドレイアウトで高さも横幅もバラバラの画像を綺麗に並べる方法 */
-            /* https://ottan.xyz/grid-bootstrap-css-5260/ */
-            img {
-                max-width: 80%;
+            /* 追従ボタン */
+            #page-top {
+                position: fixed;
+                bottom: 0px;
+                right: 10px;
+                font-size: 150%;
             }
-            .grid-img {
-                position: relative;
-                overflow: hidden;
+            #page-top a {
+                background: #666;
+                text-decoration: none;
+                color: #fff;
+                width: 40px;
+                padding: 0px 10px 5px 10px;
+                text-align: center;
+                display: block;
+                border-radius: 40px;
             }
-            .grid-img img {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                margin: auto;
+            #page-top a:hover {
+                text-decoration: none;
+                background: #999;
             }
         </style>
     </head>
 
-    <body class="bg-light">
+    <body class="bg-light" id="top">
+
         <!-- ナビゲーションヘッダ -->
         <nav class="navbar fixed-top navbar-dark bg-dark">
             <a class="navbar-brand mt-2" href="main.html"><h3>BibShare</h3></a>
             <span class="navbar-text">
-                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn">Sign out</button>
-                <a href="post.html"><button class="btn btn-primary" type="button">Post</button></a>
+                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn"><i class="fa fa-sign-out"></i> Sign out</button>
+                <a href="post.html"><button class="btn btn-primary" type="button"><i class="fa fa-book"></i> Post</button></a>
             </span>
         </nav>
 
-        <!-- 検索結果表示エリア -->
         <div class="container">
-			<div id="resultArea">
-	            <div class="card" style="margin-top: 100px;">
-	                <div class="card-header"/>
-	                    Search results
-	                </div>
+            <!-- 検索結果表示エリア -->
+            <div id="resultArea">
+                <div class="card" style="margin-top: 100px;">
+                    <div class="card-header">
+                        Search results
+                    </div>
 
-	                <ul class="list-group list-group-flush" id="resultAreaPost"/>
+                    <ul class="list-group list-group-flush" id="resultAreaPost" />
 
-	            </div>
+                </div>
 
-	            <div class="row justify-content-center my-4">
-	                <div>
-	                    <button type="button" class="btn btn-secondary btn-block" onclick="location.href='main.html';">Cancel</button>
-	                </div>
-	            </div>
-			</div>
+                <div class="row justify-content-center my-4">
+                    <div>
+                        <button type="button" class="btn btn-secondary btn-block" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> Back</button>
+                    </div>
+                </div>
+            </div>
 
-        <!-- 検索フォーム -->
+            <!-- 検索フォーム -->
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="card" id="dummymargin" style="margin-top: 100px; width: 100%;">
@@ -104,18 +110,19 @@
                                     </div>
                                 </form>
                             </li>
-
                             <li class="list-group-item">
                                 <!-- Bootstrapのファイルをアップロードするボタンを標準デザインのボタンにする -->
                                 <!-- https://qiita.com/nakapython/items/46d44793827920282f75 -->
-                                <label class="btn btn-primary btn-block">
-                                    <i class="fas fa-barcode"></i>Scan the ISBN barcode
+                                <label class="btn btn-outline-primary btn-block">
+                                    <h2 class="text-center"><i class="fa fa-barcode"></i></h2>
+                                    Scan the ISBN barcode
                                     <input class="mb-2" type="file" accept="image/*" capture="camera" style="display:none" id="gbIsbnSearchBtn">
                                 </label>
                             </li>
 
                             <li class="list-group-item">
-                                <label class="btn btn-success btn-block">
+                                <label class="btn btn-outline-success btn-block">
+                                    <h2 class="text-center"><i class="fa fa-camera"></i></h2>
                                     Scan the book cover
                                     <input class="mb-2" type="file" accept="image/*" capture="camera" style="display:none" id="gbImageSearchBtn">
                                 </label>
@@ -127,13 +134,16 @@
 
                 <div class="row justify-content-center my-4">
                     <div>
-                        <button type="button" class="btn btn-secondary btn-block" onclick="location.href='main.html';">Cancel</button>
+                        <button type="button" class="btn btn-secondary btn-block" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> Back</button>
                     </div>
                 </div>
 
             </div>
 
         </div>
+
+        <!-- 追従ボタン -->
+        <p id="page-top"><a href="#top"><i class="fa fa-angle-double-up"></i></a></p>
 
     </body>
 </html>
