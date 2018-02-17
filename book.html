@@ -45,8 +45,8 @@
         <nav class="navbar fixed-top navbar-dark bg-dark">
             <a class="navbar-brand mt-2" href="main.html"><h3>BibShare</h3></a>
             <span class="navbar-text">
-                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn"><i class="fa fa-sign-out"></i> Sign out</button>
-                <a href="post.html"><button class="btn btn-primary" type="button"><i class="fa fa-book"></i> Post</button></a>
+                <button class="btn btn-secondary mr-auto" type="button" id="sign_out_btn"><i class="fa fa-sign-out"></i> サインアウト</button>
+                <a href="post.html"><button class="btn btn-primary" type="button"><i class="fa fa-book"></i> 投稿</button></a>
             </span>
         </nav>
 
@@ -67,31 +67,31 @@
                 <div class="col-9" id="editArea">
                     <form>
                         <div class="form-group row">
-                            <label for="title" class="col-sm-3 col-form-label text-info">Title</label>
+                            <label for="title" class="col-sm-3 col-form-label text-info">タイトル</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="title" value="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="author" class="col-sm-3 col-form-label text-info">Author</label>
+                            <label for="author" class="col-sm-3 col-form-label text-info">著者</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="authors" value="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="publisher" class="col-sm-3 col-form-label text-info">Publisher</label>
+                            <label for="publisher" class="col-sm-3 col-form-label text-info">出版社</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="publisher" value="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="tag" class="col-sm-3 col-form-label text-info">Tag</label>
+                            <label for="tag" class="col-sm-3 col-form-label text-info">タグ</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="tag" value="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="comment" class="col-sm-3 col-form-label text-info">Comment</label>
+                            <label for="comment" class="col-sm-3 col-form-label text-info">コメント</label>
                             <div class="col-sm-9">
                                 <textarea class="form-control" id="comment" rows="5"></textarea>
                             </div>
@@ -99,11 +99,11 @@
                     </form>
                     <div class="row justify-content-end">
                         <div class="col-sm-9">
-                            <button type="button" class="btn btn-primary btn-block" id="insertBookData"><i class="fa fa-send-o"></i> Post</button>
-                            <button type="button" class="btn btn-primary btn-block" id="updateBookData"><i class="fa fa-send-o"></i> Update</button>
-                            <button type="button" class="btn btn-danger btn-block" id="deleteBookData"><i class="fa fa-close"></i> Delete</button>
-                            <button type="button" class="btn btn-success btn-block" id="postSlack1"><i class="fa fa-slack"></i> Add to Slack</a>
-                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> Cancel</button>
+                            <button type="button" class="btn btn-primary btn-block" id="insertBookData"><i class="fa fa-send-o"></i> 投稿</button>
+                            <button type="button" class="btn btn-primary btn-block" id="updateBookData"><i class="fa fa-send-o"></i> 更新</button>
+                            <button type="button" class="btn btn-danger btn-block" id="deleteBookData"><i class="fa fa-close"></i> 削除</button>
+                            <button type="button" class="btn btn-success btn-block" id="postSlack1"><i class="fa fa-slack"></i> Slackで共有</a>
+                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> キャンセル</button>
                         </div>
                     </div>
             		<!-- <div id="message" class="alert" style="display:none;"></div> -->
@@ -113,30 +113,30 @@
                 <!-- 参照 -->
                 <div class="col-9" id="detailArea">
                     <div class="row">
-                        <label for="title" class="col-sm-3 col-form-label text-info">Title</label>
+                        <label for="title" class="col-sm-3 col-form-label text-info">タイトル</label>
                         <div class="col-sm-9" id="dispTitle"></div>
                     </div>
                     <div class="row">
-                        <label for="author" class="col-sm-3 col-form-label text-info">Author</label>
+                        <label for="author" class="col-sm-3 col-form-label text-info">著者</label>
                         <div class="col-sm-9" id="dispAuthors"></div>
                     </div>
                     <div class="row">
-                        <label for="publisher" class="col-sm-3 col-form-label text-info">Publisher</label>
+                        <label for="publisher" class="col-sm-3 col-form-label text-info">出版社</label>
                         <div class="col-sm-9" id="dispPublisher"></div>
                     </div>
                     <div class="row">
-                        <label for="tag" class="col-sm-3 col-form-label text-info">Tag</label>
+                        <label for="tag" class="col-sm-3 col-form-label text-info">タグ</label>
                         <div class="col-sm-9" id="dispTag"></div>
                     </div>
                     <div class="row">
-                        <label for="comment" class="col-sm-3 col-form-label text-info">Comment</label>
+                        <label for="comment" class="col-sm-3 col-form-label text-info">コメント</label>
                         <div class="col-sm-9" id="dispComment"></div>
                     </div>
                     <div class="row justify-content-end">
                         <div class="col-sm-9">
-                            <button type="button" class="btn btn-primary btn-block" id="editBookData"><i class="fa fa-edit"></i> Edit</button>
-                            <button type="button" class="btn btn-success btn-block" id="postSlack2"><i class="fa fa-slack"></i> Add to Slack</a>
-                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> Back</button>
+                            <button type="button" class="btn btn-primary btn-block" id="editBookData"><i class="fa fa-edit"></i> 編集</button>
+                            <button type="button" class="btn btn-success btn-block" id="postSlack2"><i class="fa fa-slack"></i> Slackで共有</a>
+                            <button type="button" class="btn btn-secondary btn-block mb-4" onclick="location.href='main.html';"><i class="fa fa-arrow-left"></i> 戻る</button>
                         </div>
                     </div>
                 </div>

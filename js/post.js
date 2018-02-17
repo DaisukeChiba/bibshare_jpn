@@ -280,7 +280,7 @@ function sendBooksAPI(serchparam, mode){
 				value ='image/book_01.jpg'
 			}
 			ulItems +='<img class=\"rounded grid-img\" src=\"' + value + '\">';
-			ulItems +='<button type=\"button\" class=\"btn btn-primary btn-block mt-3\" onclick=\"postBookInformation(' + i + ')\"><i class=\"fa fa-check\"></i> Select</button>';
+			ulItems +='<button type=\"button\" class=\"btn btn-primary btn-block mt-3\" onclick=\"postBookInformation(' + i + ')\"><i class=\"fa fa-check\"></i> 選択</button>';
 			ulItems +='</div>';
 			ulItems +='<div class=\"col-9 mt-2\">';
 			ulItems +='<form>';
@@ -293,7 +293,7 @@ function sendBooksAPI(serchparam, mode){
 				value ="";
 			}
 			ulItems +='<div class=\"row\">';
-			ulItems +='<label class=\"col-sm-3 text-info\">Title</label>';
+			ulItems +='<label class=\"col-sm-3 text-info\">タイトル</label>';
 			ulItems +='<div class=\"col-sm-9\">';
 			ulItems +='<label>' + value + '</label>';
 			ulItems +='</div>';
@@ -307,7 +307,7 @@ function sendBooksAPI(serchparam, mode){
 				value ="";
 			}
 			ulItems +='<div class=\"row\">';
-			ulItems +='<label class=\"col-sm-3 text-info\">Author</label>';
+			ulItems +='<label class=\"col-sm-3 text-info\">著者</label>';
 			ulItems +='<div class=\"col-sm-9\">';
 			ulItems +='<label>' + value + '</label>';
 			ulItems +='</div>';
@@ -320,7 +320,7 @@ function sendBooksAPI(serchparam, mode){
 				value ="";
 			}
 			ulItems +='<div class=\"row\">';
-			ulItems +='<label class=\"col-sm-3 text-info\">Publisher</label>';
+			ulItems +='<label class=\"col-sm-3 text-info\">出版社</label>';
 			ulItems +='<div class=\"col-sm-9\">';
 			ulItems +='<label>' + value + '</label>';
 			ulItems +='</div>';

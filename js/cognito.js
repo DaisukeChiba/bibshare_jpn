@@ -19,19 +19,19 @@ $(function(){
 	    email = $("#inputEmail").val();
 	    password = $("#inputPassword").val();
 	    if(!username) {
-	        $("#message").text("Input User name !!");
+	        $("#message").text("ユーザー名を入力ください");
 	        $("#message").addClass("alert-danger");
 	        $("#message").show();
 	        return false;
 	    }
 	    if(!email) {
-	        $("#message").text("Input Email address !!");
+	        $("#message").text("Eメールアドレスを入力ください");
 	        $("#message").addClass("alert-danger");
 	        $("#message").show();
 	        return false;
 	    }
 	    if(!password) {
-	        $("#message").text("Input Password !!");
+	        $("#message").text("パスワードを入力ください");
 	        $("#message").addClass("alert-danger");
 	        $("#message").show();
 	        return false;
@@ -49,9 +49,9 @@ $(function(){
 	            $("#message").addClass("alert-danger");
 	            $("#message").show();
 	        } else {
-	             alert('サインアップが完了しました\n' +
-	             'verification codeを記載したメールを送信しましたので' +
-	             '次のアクティベーション画面で登録してください');
+	             alert('サインアップが完了しました。\n' +
+	             '確認コードを記載したメールを送信しましたので' +
+	             '次のアクティベーション画面で登録してください。');
 	             var url = "activation.html";
 	             $(location).attr("href", url);
 	             $(".wrapper").addClass("form-success");
@@ -70,13 +70,13 @@ $(function(){
 	    username = $("#inputUsername").val();
 	    actcode = $("#actcode").val();
 	    if(!username) {
-	        $("#message").text("Input User name !!");
+	        $("#message").text("ユーザー名を入力ください");
 	        $("#message").addClass("alert-danger");
 	        $("#message").show();
 	        return false;
 	    }
 	    if(!actcode) {
-	        $("#message").text("Input Activation Key !!");
+	        $("#message").text("確認コードを入力ください");
 	        $("#message").addClass("alert-danger");
 	        $("#message").show();
 	        return false;
@@ -95,11 +95,11 @@ $(function(){
 	            $("#message").addClass(message_class);
 	            $("#message").show();
 	        } else {
-	             alert('アクティベーションが完了しました\n' +
-	             '次の画面でサインインを行ってください');
+	             alert('アクティベーションが完了しました。\n' +
+	             '次の画面でサインインを行ってください。');
 	             var url = "signin.html";
 	             $(location).attr("href", url);
-//	             $(".wrapper").addClass("form-success"); 
+//	             $(".wrapper").addClass("form-success");
 	        }
 	    });
 	});
@@ -115,13 +115,13 @@ $(function(){
 	    username = $("#inputUsername").val();
 	    password = $("#inputPassword").val();
 	    if(!username) {
-	        $("#message").text("Input User name !!");
+	        $("#message").text("ユーザー名を入力ください");
 	        $("#message").addClass("alert-danger");
 	        $("#message").show();
 	        return false;
 	    }
 	    if(!password) {
-	        $("#message").text("Input Password !!");
+	        $("#message").text("パスワードを入力ください");
 	        $("#message").addClass("alert-danger");
 	        $("#message").show();
 	        return false;
@@ -144,7 +144,7 @@ $(function(){
 				//本棚画面へ遷移
 	            var url = "main.html";
 	                $(location).attr("href", url);
-//	            $(".wrapper").addClass("form-success"); 
+//	            $(".wrapper").addClass("form-success");
 	        },
 	        onFailure: function(err) {
 	            console.log(err);
@@ -166,7 +166,7 @@ $(function(){
 $(function(){
 	$("#sign_up_link").click(function() {
          var url = "signup.html";
-         $(location).attr("href", url); 
+         $(location).attr("href", url);
 	});
 });
 
@@ -213,7 +213,7 @@ $(function(){
 		console.log("cognitoUser is null.");
 		var url = "signin.html";
 		$(location).attr("href", url);
-//		$(".wrapper").addClass("form-success"); 
+//		$(".wrapper").addClass("form-success");
 
 	});
 });
